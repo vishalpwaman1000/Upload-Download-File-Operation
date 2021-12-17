@@ -1,0 +1,83 @@
+.flexcenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.MainContainer {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #4990e7;
+
+  .SubContainer {
+    height: fit-content;
+    width: 600px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    margin: 50px auto;
+
+    .Box1 {
+      position: sticky;
+      width: 100%;
+      height: 250px;
+      border: 0.5px solid lightgray;
+      box-sizing: border-box;
+      background-color: white;
+      @extend .flexcenter;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+
+      .Input-Container {
+        width: 80%;
+        height: 80%;
+        @extend .flexcenter;
+        flex-direction: column;
+
+        .flex-containt {
+          width: 80%;
+          margin: 5px;
+        }
+        .flex-button {
+          margin: 15px auto;
+        }
+      }
+    }
+
+    .Box2 {
+      width: 100%;
+      height: fit-content;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.25);
+      background-color: white;
+      flex-direction: column;
+
+      .data-flex {
+        margin: 5px 0 0 0;
+        height: 50px;
+        display: flex;
+        align-content: center;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        border-bottom: 0.5px solid lightgray;
+        .UserID {
+          flex: 5;
+          @extend .flexcenter;
+        }
+
+        .UserName {
+          flex: 15;
+          @extend .flexcenter;
+        }
+        .Age {
+          flex: 8;
+          @extend .flexcenter;
+        }
+        .Update,
+        .Delete {
+          margin: 6px 5px;
+          align-content: center;
+          flex: 2;
+        }
+      }
+    }
+  }
+}
