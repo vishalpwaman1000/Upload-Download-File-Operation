@@ -103,6 +103,8 @@ export default function GetFileList(props) {
       fileID: fileID,
     }
 
+    
+
     fileOperation
       .DeleteFile(data)
       .then((data) => {
