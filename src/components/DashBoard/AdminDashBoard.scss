@@ -1,0 +1,130 @@
+.AdminDashBoard-Container {
+    height: 597px;
+    width: 1365px;
+    .Sub-Container {
+        height: 100%;
+        width: 100%;
+        .Body {
+            height: 89%;
+            width: 100%;
+            // border: 0.5px solid lightgray;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            .Sub-Body {
+                height: 100%;
+                width: 100%;
+                display: flex;
+
+                .SubBody11 {
+                    width: 300px;
+                    height: 100%;
+                    // border: 0.5px solid black;
+                    padding: 5px 0 0 0;
+                    transition: width 0.3s;
+                    z-index: 1;
+                }
+
+                .SubBody12 {
+                    width: 60px;
+                    height: 100%;
+                    // border: 0.5px solid black;
+                    padding: 5px 0 0 0;
+                    transition: width 0.3s;
+                    z-index: 1;
+                    display: flex;
+                    // justify-content: flex-start;
+                    flex-direction: column;
+                }
+
+                .SubBody21 {
+                    width: 1050px;
+                    height: 98%;
+                    // border: 0.5px solid lightgray;
+                    z-index: 1;
+                    transition: width 0.1s;
+                }
+
+                .SubBody22 {
+                    width: 1350px;
+                    height: 98%;
+                    // border: 0.5px solid lightgray;
+                    z-index: 1;
+                    transition: width 0.1s;
+                }
+
+                .NavButton1 {
+                    height: 50px;
+                    // border: 0.5px solid lightgray;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: row;
+                    cursor: pointer;
+                    padding-left: 10px;
+                    background-color: rgba(255, 166, 0, 0.253);
+                    border-radius: 0 25px 25px 0;
+
+                    .NavBtn {
+                        // width: 20%;
+                        // margin: 0 0 0 2px;
+                    }
+                    .NavButtonText {
+                        width: 80%;
+                        font-family: "Roboto";
+                        font-weight: 500;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+
+                .NavButton2 {
+                    height: 50px;
+                    // border: 0.5px solid lightgray;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: row;
+                    cursor: pointer;
+                    padding-left: 10px;
+
+                    .NavBtn {
+                    }
+                    .NavButtonText {
+                        width: 80%;
+                        font-family: "Roboto";
+                        font-weight: 500;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+                }
+
+                .NavButton1:hover {
+                    background-color: rgba(255, 166, 0, 0.253);
+                    border-radius: 0 25px 25px 0;
+                }
+
+                .NavButton2:hover {
+                    background-color: rgba(112, 111, 110, 0.253);
+                    border-radius: 0 25px 25px 0;
+                }
+
+                .DashBoard {
+                    height: inherit;
+                    // width: inherit;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+
+                    font-size: 50px;
+                    font-family: "Roboto";
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}
