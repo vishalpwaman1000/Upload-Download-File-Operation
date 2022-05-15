@@ -14,24 +14,9 @@ export default class FileOperation {
     return axiosServices.post(Configurations.GetFileList, data, false)
   }
 
-  UpdateAsArchiveFile(data) {
-    console.log('UpdateAsArchiveFile API Calling..... & Data : ',data);
-    return axiosServices.post(Configurations.UpdateAsArchiveFile, data, false)
-  }
-
-  GetArchiveFileList(data) {
-    console.log('GetArchiveFileList API Calling..... & Data : ',data);
-    return axiosServices.post(Configurations.GetArchiveFileList, data, false)
-  }
-
-  UpdateAsTrashFile(data) {
-    console.log('UploadAsTrashFile API Calling..... & Data : ',data);
-    return axiosServices.post(Configurations.UpdateAsTrashFile, data, false)
-  }
-
-  GetTrashFileList(data){
-    console.log('GetTrashFileList API Calling..... & Data : ',data);
-    return axiosServices.post(Configurations.GetTrashFileList, data, false)
+  UpdateAsArchiveTrashFile(data) {
+    console.log('UpdateAsArchiveTrashFile API Calling..... & Data : ',data);
+    return axiosServices.post(Configurations.UpdateAsArchiveTrashFile, data, false)
   }
 
   RestoreTrashArchiveFile(data){

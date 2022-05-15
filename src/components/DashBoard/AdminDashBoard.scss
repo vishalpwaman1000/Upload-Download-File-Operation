@@ -44,7 +44,7 @@
                     height: 98%;
                     // border: 0.5px solid lightgray;
                     z-index: 1;
-                    transition: width 0.1s;
+                    transition: width 0.3s;
                 }
 
                 .SubBody22 {
@@ -52,7 +52,7 @@
                     height: 98%;
                     // border: 0.5px solid lightgray;
                     z-index: 1;
-                    transition: width 0.1s;
+                    transition: width 0.3s;
                 }
 
                 .NavButton1 {
@@ -124,7 +124,44 @@
                     font-family: "Roboto";
                     font-weight: 500;
                 }
+
+                
             }
         }
+    }
+}
+
+.FileTypeImage{
+    width: 200px;
+    height: 200px;
+}
+
+.FileDetail{
+    display: flex;
+    flex-direction: row;
+    width: 350px;
+    margin: 5px;
+    // border: 0.5px solid lightgray;
+    margin: 10px 0 0 120px;
+    .Text{
+        width: 30%;
+        font-family: 'Roboto';
+        font-weight: 500;
+    }
+
+    .Detail{
+        width: 70%;
+        font-family: 'Roboto';
+        font-weight: 500;
+        color: darkblue;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.DownloadButton{
+    margin: 30px 10px;
+    .SubButton{
+        margin: 0 5px;
     }
 }

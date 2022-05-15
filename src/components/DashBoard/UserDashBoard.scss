@@ -1,0 +1,53 @@
+.UserDashBoard-Container {
+    height: 580px;
+    width: 1365px;
+    .Sub-Container {
+        height: 100%;
+        width: 100%;
+
+        .Body {
+            height: 89%;
+            width: 100%;
+            // border: 0.5px solid lightgray;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            .Sub-Body {
+                height: 100%;
+                width: 100%;
+                display: flex;
+            }
+        }
+    }
+}
+
+.FileDetail{
+    display: flex;
+    flex-direction: row;
+    width: 350px;
+    margin: 5px;
+    // border: 0.5px solid lightgray;
+    margin: 10px 0 0 120px;
+    .Text{
+        width: 30%;
+        font-family: 'Roboto';
+        font-weight: 500;
+    }
+
+    .Detail{
+        width: 70%;
+        font-family: 'Roboto';
+        font-weight: 500;
+        color: darkblue;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.DownloadButton{
+    margin: 30px 10px;
+    .SubButton{
+        margin: 0 5px;
+    }
+}

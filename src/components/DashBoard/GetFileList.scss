@@ -29,36 +29,51 @@
             .File-Body {
                 // margin: 20px 0 0 0;
                 width: inherit;
-                height: fit-content;
+                // height: fit-content;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+                box-shadow: 0 0 8px -2px black;
+                border-radius: 5px;
+
                 .Thumbnail {
                     width: 140px;
                     height: 150px;
+                    cursor: pointer;
                 }
                 .File-Name {
                     // border: 0.5px solid lightgray;
-                    width: inherit;
+                    width: 200px;
                     height: 18px;
                     font-size: 14px;
                     font-weight: 500;
                     display: flex;
-                    align-items: flex-start;
+                    align-items: center;
                     justify-content: center;
                     overflow: hidden;
                     text-overflow: ellipsis;
+                    white-space: nowrap;
+                    cursor: pointer;
+                }
+
+                .File-Name:is(:hover) {
+                    color: blue;
                 }
 
                 .File-Operations {
-                    margin: 5px 0 0 0;
+                    margin: 8px 0 0 0;
                     width: inherit;
-                    
+
                     display: flex;
                     justify-content: space-around;
                 }
             }
 
-            // .File-Body:hover{
-            //     box-shadow: 0 0 0 0 white;
-            // }
+            .File-Body:hover {
+                box-shadow: 0 0 8px -2px red;
+                border-radius: 5px;
+            }
         }
 
         // .File-Container :is(:hover) {

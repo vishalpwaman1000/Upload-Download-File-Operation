@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './GetFileList.scss'
 import IconButton from '@material-ui/core/IconButton'
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload'
@@ -6,9 +6,7 @@ import ArchiveIcon from '@material-ui/icons/Archive'
 import DeleteIcon from '@material-ui/icons/Delete'
 import RestoreIcon from '@material-ui/icons/Restore'
 import FileOperation from '../../services/FileOperation'
-import DownloadLink from 'react-download-link'
 import { saveAs } from 'file-saver'
-// var FileSaver = require('file-saver')
 
 const fileOperation = new FileOperation()
 
@@ -27,33 +25,34 @@ export default function GetFileList(props) {
   const handleMethod = () => {
     console.log('handle Method Calling ... ')
     if (props.OpenArchive) {
-      props.GetArchiveFileData(props.ArchivePageNumber)
+      props.GetFileData(props.ArchivePageNumber, 'Archive')
     } else if (props.OpenTrash) {
-      props.GetTrashFileData(props.TrashPageNumber)
+      props.GetFileData(props.TrashPageNumber, 'Trash')
     }
   }
 
-  const handleTrash = (fileID) => {
-    console.log('File ID : ', fileID)
+  const UpdateAsArchiveTrashFile = (fileID, TrashOrArchive, OperationType) => {
+    console.log('File ID : ', fileID, 'OperationType : ', OperationType)
 
     let data = {
+      operationType: TrashOrArchive,
       fileID: fileID,
     }
 
     fileOperation
-      .UpdateAsTrashFile(data)
+      .UpdateAsArchiveTrashFile(data)
       .then((data) => {
         console.log('Data : ', data)
-        props.GetFileData(props.CurrentPage)
+        props.GetFileData(props.CurrentPage, OperationType)
       })
       .catch((error) => {
         console.log('Error : ', error)
-        props.GetFileData(props.CurrentPage)
+        props.GetFileData(props.CurrentPage, OperationType)
       })
   }
 
-  const handleArchive = (fileID) => {
-    console.log('File ID : ', fileID)
+  const handleArchive = (fileID, OperationType) => {
+    console.log('File ID : ', fileID, 'OperationType : ', OperationType)
 
     let data = {
       fileID: fileID,
@@ -63,11 +62,11 @@ export default function GetFileList(props) {
       .UpdateAsArchiveFile(data)
       .then((data) => {
         console.log('Data : ', data)
-        props.GetFileData(props.CurrentPage)
+        props.GetFileData(props.ArchivePageNumber, OperationType)
       })
       .catch((error) => {
         console.log('Error : ', error)
-        props.GetFileData(props.CurrentPage)
+        props.GetFileData(props.ArchivePageNumber, OperationType)
       })
   }
 
@@ -97,25 +96,25 @@ export default function GetFileList(props) {
       })
   }
 
-  const handleDeleteFile = (fileID) => {
-    props.LoaderToggling()
+  const handleDeleteFile = (file_ID, file_Name, public_ID) => {
+    props.LoaderToggling(false, '')
     let data = {
-      fileID: fileID,
+      fileID: file_ID,
+      fileName: file_Name,
+      publicID: public_ID,
     }
-
-    
 
     fileOperation
       .DeleteFile(data)
       .then((data) => {
         console.log('Data : ', data)
-        props.GetFileData(props.CurrentPage)
-        props.LoaderToggling()
+        props.GetFileData(props.TrashPageNumber, 'Trash')
+        props.LoaderToggling(true, data.data.message)
       })
       .catch((error) => {
         console.log('Error : ', error)
-        props.GetFileData(props.CurrentPage)
-        props.LoaderToggling()
+        props.GetFileData(props.TrashPageNumber, 'Trash')
+        props.LoaderToggling(true, 'Something Went Wrong')
       })
   }
 
@@ -124,13 +123,27 @@ export default function GetFileList(props) {
       ? props.List.map((note, index) => (
           <div className="File-Container" key={index}>
             <div className="File-Body">
-              <img className="Thumbnail" src={note.fileTypeUrl} alt="" />
-              <div className="File-Name">{note.fileName}</div>
+              <img
+                className="Thumbnail"
+                src={note.fileTypeUrl}
+                alt=""
+                onClick={() => {
+                  props.handleInfoModel(note)
+                }}
+              />
+              <div
+                className="File-Name"
+                onClick={() => {
+                  props.handleInfoModel(note)
+                }}
+              >
+                {note.fileName}
+              </div>
 
               {props.OpenShow ? (
                 <div className="File-Operations">
                   <IconButton
-                    color="primary"
+                    color="secondary"
                     component="span"
                     size="small"
                     onClick={() => {
@@ -143,7 +156,7 @@ export default function GetFileList(props) {
                     size="small"
                     component="span"
                     onClick={() => {
-                      handleTrash(note.fileID)
+                      UpdateAsArchiveTrashFile(note.fileID, 'Trash', 'Active')
                     }}
                   >
                     <DeleteIcon />
@@ -151,7 +164,7 @@ export default function GetFileList(props) {
                   <IconButton
                     component="span"
                     onClick={() => {
-                      handleArchive(note.fileID)
+                      UpdateAsArchiveTrashFile(note.fileID, 'Archive', 'Active')
                     }}
                     size="small"
                   >
@@ -170,18 +183,27 @@ export default function GetFileList(props) {
                   >
                     <RestoreIcon />
                   </IconButton>
-                  {props.OpenTrash ? (
-                    <IconButton
-                      color="secondary"
-                      component="span"
-                      size="small"
-                      onClick={() => {
-                        handleDeleteFile(note.fileID)
-                      }}
-                    >
-                      <DeleteIcon />
-                    </IconButton>
-                  ) : null}
+
+                  <IconButton
+                    color=""
+                    component="span"
+                    size="small"
+                    onClick={() => {
+                      props.OpenTrash
+                        ? handleDeleteFile(
+                            note.fileID,
+                            note.fileName,
+                            note.resourcePublicID,
+                          )
+                        : UpdateAsArchiveTrashFile(
+                            note.fileID,
+                            'Trash',
+                            'Archive',
+                          )
+                    }}
+                  >
+                    <DeleteIcon />
+                  </IconButton>
                 </div>
               ) : null}
             </div>

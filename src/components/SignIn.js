@@ -76,7 +76,12 @@ export default class SignIn extends Component {
         .then((data) => {
           console.log('Data : ', data)
           if (data.data.isSuccess) {
-            this.props.history.push('/HomePage')
+            if(this.state.Radiovalue.toLowerCase()==='admin'){
+              this.props.history.push('/AdminDashBoard')
+            }else{
+              this.props.history.push('/UserDashBoard')
+            }
+            
           } else {
             console.log('Something Went Wrong')
             this.setState({ open: true, Message: 'LogIn UnSuccessfully' })
